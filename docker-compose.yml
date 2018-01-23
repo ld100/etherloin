@@ -4,8 +4,9 @@ services:
     extends:
       file: docker-compose-common.yml
       service: tenderapp
-    # TODO: Put ethermint application:port instead of dummy
     command: node --proxy_app=dummy
+    # Not sure why back-referencing does not work
+    # command: node --proxy_app=tcp://ethermint:46658
     ports:
       - "46656:46656"
       - "46657:46657"
@@ -18,3 +19,32 @@ services:
       service: tenderapp
     command: init
 
+  ethermint:
+    extends:
+      file: docker-compose-common.yml
+      service: etherapp
+    # command: "ethermint --tendermint_addr tcp://tendermint:46657"
+    command: "ethermint --tendermint_addr tcp://tendermint:46657 --datadir /ethermint --rpc --rpcaddr=0.0.0.0 --ws --wsaddr=0.0.0.0 --rpcapi eth,net,web3,personal,admin"
+    # command: "ethermint --with-tendermint --datadir /ethermint --rpc --rpcaddr=0.0.0.0 --ws --wsaddr=0.0.0.0 --rpcapi eth,net,web3,personal,admin"
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+      - "46658:46658"
+    depends_on:
+      - ethermint_setup
+
+  ethermint_setup:
+    extends:
+      file: docker-compose-common.yml
+      service: etherapp
+    command: "ethermint --datadir /ethermint init /ethermint/genesis.json"
+
+  # netstats:
+  #   build: netstats
+  #   restart: on-failure
+  #   environment:
+  #     - WS_SECRET=eth-net-stats-secret
+  #   # volumes:
+  #   #   - /etc/localtime:/etc/localtime:ro
+  #   ports:
+  #     - "3000:3000"

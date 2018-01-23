@@ -4,8 +4,23 @@ services:
     build: ./tendermint
     environment:
       APP_ENV: "development"
+      ETHERMINT_ADDR: "tcp://ethermint:46658"
     volumes:
       - ${PWD-.}/data/tendermint:/tendermint
       # - ${PWD-.}/config/ethereum/dev/password:/root/files/password:ro
-      # - ${PWD-.}/config/ethereum/dev/genesis.json:/root/files/genesis.json:ro
-      # - ${PWD-.}/config/ethereum/dev/keystore:/root/.ethereum/devchain/keystore:rw
+
+  etherapp:
+    # build: ./ethermint
+    build:
+      context: ./ethermint
+      dockerfile: Dockerfile
+      args:
+        buildno: 1
+    environment:
+      APP_ENV: "development"
+      TENDERMINT_ADDR: "tcp://tendermint:46657"
+      DATA_ROOT: "/ethermint"
+    volumes:
+      # - ${PWD-.}/data/ethermint:/ethermint
+      - ${PWD-.}/setup/genesis.json:/ethermint/genesis.json:ro
+      - ${PWD-.}/setup/keystore:/ethermint/keystore:rw
