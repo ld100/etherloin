@@ -1,0 +1,20 @@
+version: "2.1"
+services:
+  tendermint:
+    extends:
+      file: docker-compose-common.yml
+      service: tenderapp
+    # TODO: Put ethermint application:port instead of dummy
+    command: node --proxy_app=dummy
+    ports:
+      - "46656:46656"
+      - "46657:46657"
+    depends_on:
+      - tendermint_setup
+
+  tendermint_setup:
+    extends:
+      file: docker-compose-common.yml
+      service: tenderapp
+    command: init
+
