@@ -7,15 +7,9 @@ services:
       ETHERMINT_ADDR: "tcp://ethermint:46658"
     volumes:
       - ${PWD-.}/data/tendermint:/tendermint
-      # - ${PWD-.}/config/ethereum/dev/password:/root/files/password:ro
 
   etherapp:
-    # build: ./ethermint
-    build:
-      context: ./ethermint
-      dockerfile: Dockerfile
-      args:
-        buildno: 1
+    build: ./ethermint
     environment:
       APP_ENV: "development"
       TENDERMINT_ADDR: "tcp://tendermint:46657"
