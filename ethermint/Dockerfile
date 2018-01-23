@@ -28,6 +28,8 @@ RUN mkdir -p /go/src/github.com/tendermint/ethermint && \
 VOLUME $DATA_ROOT
 
 EXPOSE 46658
+EXPOSE 8545
+EXPOSE 8546
 
 #ENTRYPOINT ["ethermint"]
 

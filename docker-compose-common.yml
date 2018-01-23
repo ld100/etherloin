@@ -21,6 +21,6 @@ services:
       TENDERMINT_ADDR: "tcp://tendermint:46657"
       DATA_ROOT: "/ethermint"
     volumes:
-      # - ${PWD-.}/data/ethermint:/ethermint
+      - ${PWD-.}/data/ethermint:/ethermint
       - ${PWD-.}/setup/genesis.json:/ethermint/genesis.json:ro
       - ${PWD-.}/setup/keystore:/ethermint/keystore:rw

@@ -4,9 +4,9 @@ services:
     extends:
       file: docker-compose-common.yml
       service: tenderapp
-    command: node --proxy_app=dummy
     # Not sure why back-referencing does not work
-    # command: node --proxy_app=tcp://ethermint:46658
+    # command: node --proxy_app=dummy
+    command: node --proxy_app=tcp://ethermint:46658
     ports:
       - "46656:46656"
       - "46657:46657"
