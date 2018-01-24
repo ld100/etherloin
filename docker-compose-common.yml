@@ -5,8 +5,8 @@ services:
     environment:
       APP_ENV: "development"
       ETHERMINT_ADDR: "tcp://ethermint:46658"
-    volumes:
-      - ${PWD-.}/data/tendermint:/tendermint
+    # volumes:
+    #   - ${PWD-.}/data/tendermint:/tendermint
 
   etherapp:
     build: ./ethermint
@@ -15,7 +15,7 @@ services:
       TENDERMINT_ADDR: "tcp://tendermint:46657"
       DATA_ROOT: "/ethermint"
     volumes:
-      - ${PWD-.}/data/ethermint:/ethermint
+      # - ${PWD-.}/data/ethermint:/ethermint
       - ${PWD-.}/setup/genesis.json:/ethermint/genesis.json:ro
       - ${PWD-.}/setup/bootnode.key:/ethermint/bootnode.key:ro
       - ${PWD-.}/setup/keystore:/ethermint/keystore:rw

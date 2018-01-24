@@ -6,6 +6,7 @@ services:
       service: tenderapp
     environment:
       ETHERMINT_ADDR: "tcp://ethermaster:46658"
+      SEEDS: "tenderslave:46656"
     volumes:
       - ${PWD-.}/data/tendermaster:/tendermint
       - ${PWD-.}/tendermint/start.sh:/tendermint/start.sh:ro
@@ -14,6 +15,20 @@ services:
     ports:
       - "46656:46656"
       - "46657:46657"
+
+  tenderslave:
+    extends:
+      file: docker-compose-common.yml
+      service: tenderapp
+    environment:
+      ETHERMINT_ADDR: "tcp://etherslave:46658"
+      # See https://github.com/tendermint/tendermint/blob/master/docs/deploy-testnets.rst
+      SEEDS: "tendermaster:46656"
+    volumes:
+      - ${PWD-.}/data/tenderslave:/tendermint
+      - ${PWD-.}/tendermint/start.sh:/tendermint/start.sh:ro
+    entrypoint: ""
+    command: "/bin/sh /tendermint/start.sh"
 
   ethermaster:
     extends:
@@ -32,6 +47,19 @@ services:
       - "8545:8545"
       - "8546:8546"
       - "46658:46658"
+
+  etherslave:
+    extends:
+      file: docker-compose-common.yml
+      service: etherapp
+    environment:
+      TENDERMINT_ADDR: "tcp://tenderslave:46657"
+      DATA_ROOT: "/ethermint"
+    volumes:
+      - ${PWD-.}/data/etherslave:/ethermint
+      - ${PWD-.}/ethermint/start.sh:/ethermint/start.sh:ro
+    entrypoint: ""
+    command: "/bin/sh /ethermint/start.sh"
 
   # We need vanilla ethereum node for some utilities like `bootnode`
   ethutils:
