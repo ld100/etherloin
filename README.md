@@ -5,5 +5,6 @@ Ethereum smart contracts development environment based on Ethermint/Tendermint
 
 - [x] Run as a multinode cluster, not a single node
 - [ ] Enable eth-netstats client/server
-- [ ] Add sample contracts subproject with truffle
+- [ ] Add sample contracts subproject with truffle and autodeployment
 - [ ] Add usage docs
+- [ ] Include sample data encoding/decoding solidity contract
