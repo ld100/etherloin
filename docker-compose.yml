@@ -12,8 +12,6 @@ services:
       - ${PWD-.}/tendermint/start.sh:/tendermint/start.sh:ro
     entrypoint: ""
     command: "/bin/sh /tendermint/start.sh"
-    # hostname required for monitoring script
-    hostname: tendermaster
     ports:
       - "46656:46656"
       - "46657:46657"
@@ -33,8 +31,6 @@ services:
       - ${PWD-.}/tendermint/start.sh:/tendermint/start.sh:ro
     entrypoint: ""
     command: "/bin/sh /tendermint/start.sh"
-    # hostname required for monitoring script
-    hostname: tenderslave
 
   ethermaster:
     extends:
@@ -43,12 +39,15 @@ services:
     environment:
       TENDERMINT_ADDR: "tcp://tendermaster:46657"
       DATA_ROOT: "/ethermint"
+      ALLOW_NETSTATS: 0
     volumes:
       - ${PWD-.}/data/ethermaster:/ethermint
       - ${PWD-.}/ethermint/start.sh:/ethermint/start.sh:ro
     # Note: The password for the default account is 1234
     entrypoint: ""
     command: "/bin/sh /ethermint/start.sh"
+    # hostname required for monitoring script
+    hostname: ethermaster
     ports:
       - "8545:8545"
       - "8546:8546"
@@ -61,11 +60,14 @@ services:
     environment:
       TENDERMINT_ADDR: "tcp://tenderslave:46657"
       DATA_ROOT: "/ethermint"
+      ALLOW_NETSTATS: 0
     volumes:
       - ${PWD-.}/data/etherslave:/ethermint
       - ${PWD-.}/ethermint/start.sh:/ethermint/start.sh:ro
     entrypoint: ""
     command: "/bin/sh /ethermint/start.sh"
+    # hostname required for monitoring script
+    hostname: etherslave
 
   # We need vanilla ethereum node for some utilities like `bootnode`
   ethutils:

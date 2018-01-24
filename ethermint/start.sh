@@ -3,14 +3,18 @@
 # Exit if any command return non-zero exitcode
 set -e
 
-# Preparing eth-net-intelligence-api
-perl -pi -e "s/XXX/$(hostname)/g" /root/eth-net-intelligence-api/app.json
+if [ -n "${ALLOW_NETSTATS+set}" ]; then
+  if [ "$ALLOW_NETSTATS" == "1" ]; then
+    # Preparing eth-net-intelligence-api
+    perl -pi -e "s/XXX/$(hostname)/g" /root/eth-net-intelligence-api/app.json
 
-# Launching eth-net-intelligence-api
-cd /root/eth-net-intelligence-api
-/usr/bin/pm2 start ./app.json
-cd ${DATA_ROOT}
-sleep 3
+    # Launching eth-net-intelligence-api
+    cd /root/eth-net-intelligence-api
+    /usr/bin/pm2 start ./app.json
+    cd ${DATA_ROOT}
+    sleep 3
+  fi
+fi
 
 # Initialize working directory
 ethermint --datadir ${DATA_ROOT} init ${DATA_ROOT}/genesis.json
