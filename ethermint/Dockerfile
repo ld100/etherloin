@@ -11,26 +11,30 @@ RUN mkdir -p $DATA_ROOT && \
 
 RUN apk add --no-cache bash
 
-# Installing eth-net-intelligence-api depencencies and bash
-RUN apk add --update git bash nodejs nodejs-npm perl
+# TODO: uncomment if we'll use local monitors instead of external ones
+# # Installing eth-net-intelligence-api depencencies and bash
+# RUN apk add --update git bash nodejs nodejs-npm perl
 
-# Installing eth-net-intelligence client
-RUN cd /root &&\
-    git clone https://github.com/cubedro/eth-net-intelligence-api &&\
-    cd eth-net-intelligence-api &&\
-    npm install &&\
-    npm install -g pm2
+# # Installing eth-net-intelligence client
+# RUN cd /root &&\
+#     git clone https://github.com/cubedro/eth-net-intelligence-api &&\
+#     cd eth-net-intelligence-api &&\
+#     npm install &&\
+#     npm install -g pm2
 
 # Setting GOlang paths
 ENV GOPATH /go
 ENV PATH "$PATH:/go/bin"
+# ENV ETHERMINT_VERSION develop
+# ENV ETHERMINT_VERSION master
+ENV ETHERMINT_VERSION v0.5.4
 
 # Installing Ethermint from source
 RUN mkdir -p /go/src/github.com/tendermint/ethermint && \
     apk add --no-cache go build-base git linux-headers && \
     cd /go/src/github.com/tendermint/ethermint && \
     git clone https://github.com/tendermint/ethermint . && \
-    git checkout develop && \
+    git checkout ${ETHERMINT_VERSION} && \
     make get_vendor_deps && \
     make install && \
     glide cc && \
@@ -38,8 +42,9 @@ RUN mkdir -p /go/src/github.com/tendermint/ethermint && \
     rm -rf /go/src/github.com/tendermint/ethermint && \
     apk del go build-base git
 
-# Putting eth-net-intelligence client configuration into container
-ADD app.json /root/eth-net-intelligence-api/app.json
+# TODO: uncomment if we'll use local monitors instead of external ones
+# # Putting eth-net-intelligence client configuration into container
+# ADD app.json /root/eth-net-intelligence-api/app.json
 
 VOLUME $DATA_ROOT
 
