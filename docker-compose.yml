@@ -1,54 +1,54 @@
 version: "2.1"
 services:
-  tendermint:
+  tendermaster:
     extends:
       file: docker-compose-common.yml
       service: tenderapp
-    # command: node --proxy_app=dummy
-    command: node --proxy_app=tcp://ethermint:46658
+    environment:
+      ETHERMINT_ADDR: "tcp://ethermaster:46658"
+    volumes:
+      - ${PWD-.}/data/tendermaster:/tendermint
+      - ${PWD-.}/tendermint/start.sh:/tendermint/start.sh:ro
+    entrypoint: ""
+    command: "/bin/sh /tendermint/start.sh"
     ports:
       - "46656:46656"
       - "46657:46657"
-    depends_on:
-      - tendermint_setup
 
-  tendermint_setup:
-    extends:
-      file: docker-compose-common.yml
-      service: tenderapp
-    command: init
-
-  ethermint:
+  ethermaster:
     extends:
       file: docker-compose-common.yml
       service: etherapp
-    # enode://003048bba48b3daa1e8f043c4d6fcf082503248e4eafd56992bc20144027bb0ff3ff59bf973fd5af3aab5b4af5fbfcdf9635efd3190074384caa541c4a9ae66e@[::]:30301
-    # --nodekey /ethermint/bootnode.key
-    command: "ethermint --tendermint_addr tcp://tendermint:46657 --datadir /ethermint --rpc --rpcaddr=0.0.0.0 --ws --wsaddr=0.0.0.0 --rpcapi eth,net,web3,personal,admin"
+    environment:
+      TENDERMINT_ADDR: "tcp://tendermaster:46657"
+      DATA_ROOT: "/ethermint"
+    volumes:
+      - ${PWD-.}/data/ethermaster:/ethermint
+      - ${PWD-.}/ethermint/start.sh:/ethermint/start.sh:ro
+    # Note: The password for the default account is 1234
+    entrypoint: ""
+    command: "/bin/sh /ethermint/start.sh"
     ports:
       - "8545:8545"
       - "8546:8546"
       - "46658:46658"
-    depends_on:
-      - ethermint_setup
-
-  ethermint_setup:
-    extends:
-      file: docker-compose-common.yml
-      service: etherapp
-    command: "ethermint --datadir /ethermint init /ethermint/genesis.json"
 
   # We need vanilla ethereum node for some utilities like `bootnode`
   ethutils:
-    build: ./ethereum
-    volumes:
-     - ${PWD-.}/data/ethereum:/root/.ethereum
-     - ${PWD-.}/setup/genesis.json:/root/.ethereum/genesis.json:ro
-    # command: geth --datadir=/root/.ethereum init /root/.ethereum/genesis.json
-    command: geth --help
-    environment:
-      APP_ENV: development
-      DATA_ROOT: /root/.ethereum
+    extends:
+      file: docker-compose-common.yml
+      service: vanilla_eth
+    command: bash
+
+  # Vanila geth, connects to Ethermint by default
+  geth:
+    extends:
+      file: docker-compose-common.yml
+      service: vanilla_eth
+    entrypoint: geth
+    command: attach http://ethermaster:8545
+    depends_on:
+      - ethermaster
 
   # netstats:
   #   build: netstats

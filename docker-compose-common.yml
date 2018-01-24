@@ -19,3 +19,12 @@ services:
       - ${PWD-.}/setup/genesis.json:/ethermint/genesis.json:ro
       - ${PWD-.}/setup/bootnode.key:/ethermint/bootnode.key:ro
       - ${PWD-.}/setup/keystore:/ethermint/keystore:rw
+
+  vanilla_eth:
+    build: ./ethereum
+    environment:
+      APP_ENV: development
+      DATA_ROOT: /root/.ethereum
+    volumes:
+     - ${PWD-.}/data/ethereum:/root/.ethereum
+     - ${PWD-.}/setup/genesis.json:/root/.ethereum/genesis.json:ro
