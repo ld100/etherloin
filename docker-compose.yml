@@ -22,6 +22,8 @@ services:
     extends:
       file: docker-compose-common.yml
       service: etherapp
+    # enode://003048bba48b3daa1e8f043c4d6fcf082503248e4eafd56992bc20144027bb0ff3ff59bf973fd5af3aab5b4af5fbfcdf9635efd3190074384caa541c4a9ae66e@[::]:30301
+    # --nodekey /ethermint/bootnode.key
     command: "ethermint --tendermint_addr tcp://tendermint:46657 --datadir /ethermint --rpc --rpcaddr=0.0.0.0 --ws --wsaddr=0.0.0.0 --rpcapi eth,net,web3,personal,admin"
     ports:
       - "8545:8545"
@@ -35,6 +37,18 @@ services:
       file: docker-compose-common.yml
       service: etherapp
     command: "ethermint --datadir /ethermint init /ethermint/genesis.json"
+
+  # We need vanilla ethereum node for some utilities like `bootnode`
+  ethutils:
+    build: ./ethereum
+    volumes:
+     - ${PWD-.}/data/ethereum:/root/.ethereum
+     - ${PWD-.}/setup/genesis.json:/root/.ethereum/genesis.json:ro
+    # command: geth --datadir=/root/.ethereum init /root/.ethereum/genesis.json
+    command: geth --help
+    environment:
+      APP_ENV: development
+      DATA_ROOT: /root/.ethereum
 
   # netstats:
   #   build: netstats

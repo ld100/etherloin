@@ -17,4 +17,5 @@ services:
     volumes:
       - ${PWD-.}/data/ethermint:/ethermint
       - ${PWD-.}/setup/genesis.json:/ethermint/genesis.json:ro
+      - ${PWD-.}/setup/bootnode.key:/ethermint/bootnode.key:ro
       - ${PWD-.}/setup/keystore:/ethermint/keystore:rw
