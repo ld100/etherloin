@@ -12,18 +12,21 @@ TBD
 
 ## Directory structure
 
-* `ethereum` — Dockerfile for building classic Ethereum-go client AKA Geth
-* `ethermint` — Dockerfile and start scripts for running actual Ethermint cluster
-* `tendermint` — Dockerfile and start scripts for running Tendermint consensus engine
-* `netstats` — Server Dockerfile and client configuration for running [ETH Netstats](https://github.com/cubedro/eth-netstats) tool for each node of Ethermint cluster
-* `setup` — Ethereum genesis file and keystore for Ethermint private cluster, may include other ocnfiguration files
+* `contracts` – [Truffle](http://truffleframework.com/)-based smart contracts development suite.
+* `ethereum` — Dockerfile for building classic Ethereum-go client AKA Geth.
+* `ethermint` — Dockerfile and start scripts for running actual Ethermint cluster.
+* `tendermint` — Dockerfile and start scripts for running Tendermint consensus engine.
+* `netstats` — Server Dockerfile and client configuration for running [ETH Netstats](https://github.com/cubedro/eth-netstats) tool for each node of Ethermint cluster.
+* `setup` — Ethereum genesis file and keystore for Ethermint private cluster, may include other ocnfiguration files.
 
 ## Roadmap
 
 - [x] Add sample contracts subproject with truffle and autodeployment
-- [ ] Build Tenderming from source instead of downloading prepackaged version
+- [ ] Build Tendermint from source instead of downloading prepackaged version
 - [ ] Add usage docs
 - [ ] Include sample data encoding/decoding solidity contract
+- [ ] Add visual block explorer
+- [ ] Create a fork of netstats-client that does not break Ethermint
 
 ## Known issues
 
