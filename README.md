@@ -20,8 +20,8 @@ TBD
 
 ## Roadmap
 
+- [x] Add sample contracts subproject with truffle and autodeployment
 - [ ] Build Tenderming from source instead of downloading prepackaged version
-- [ ] Add sample contracts subproject with truffle and autodeployment
 - [ ] Add usage docs
 - [ ] Include sample data encoding/decoding solidity contract
 

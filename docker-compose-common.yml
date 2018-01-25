@@ -28,3 +28,16 @@ services:
     volumes:
      - ${PWD-.}/data/ethereum:/root/.ethereum
      - ${PWD-.}/setup/genesis.json:/root/.ethereum/genesis.json:ro
+
+  truffleapp:
+    build: ./contracts
+    volumes:
+      - ${PWD-.}/contracts:/usr/src/app
+    environment:
+      ETHEREUM_NETWORK: 'development'
+      ETHEREUM_RPC_HOST: "ethermaster"
+      ETHEREUM_DEPLOYER_ADDRESS: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
+      ETHEREUM_DEPLOYER_PASSPHRASE: "1234"
+      ETHEREUM_RPC_PORT: 8545
+      ETHEREUM_UNLOCK_DURATION: 1800
+

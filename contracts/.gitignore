@@ -1,0 +1,9 @@
+build/
+.DS_Store
+.idea
+installed_contracts/
+node_modules
+npm-debug.log
+log/*
+tmp/*
+__pycache__

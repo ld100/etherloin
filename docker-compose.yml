@@ -86,6 +86,33 @@ services:
     depends_on:
       - ethermaster
 
+  contracts_test:
+    extends:
+      file: docker-compose-common.yml
+      service: truffleapp
+    command: "/bin/sh bin/truffle_test.sh"
+    depends_on:
+      - ethermaster
+
+  contracts_deploy:
+    extends:
+      file: docker-compose-common.yml
+      service: truffleapp
+    command: "/bin/sh bin/truffle_migrate.sh"
+    ports:
+      - "8080:8080"
+      - "7000:7000"
+    depends_on:
+      - ethermaster
+
+  contracts_console:
+    extends:
+      file: docker-compose-common.yml
+      service: truffleapp
+    command: "/bin/sh bin/truffle_console.sh"
+    depends_on:
+      - ethermaster
+
   # netstats:
   #   build: netstats
   #   restart: on-failure
