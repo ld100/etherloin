@@ -15,7 +15,7 @@ TBD
 * `ethereum` — Dockerfile for building classic Ethereum-go client AKA Geth
 * `ethermint` — Dockerfile and start scripts for running actual Ethermint cluster
 * `tendermint` — Dockerfile and start scripts for running Tendermint consensus engine
-* `netstats` — Server Dockerfile and client configuration for running (ETH Netstats)[https://github.com/cubedro/eth-netstats] tool for each node of Ethermint cluster
+* `netstats` — Server Dockerfile and client configuration for running [ETH Netstats](https://github.com/cubedro/eth-netstats) tool for each node of Ethermint cluster
 * `setup` — Ethereum genesis file and keystore for Ethermint private cluster, may include other ocnfiguration files
 
 ## Roadmap
