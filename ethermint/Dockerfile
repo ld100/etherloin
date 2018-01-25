@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 ENV DATA_ROOT /ethermint
 # ENV TENDERMINT_ADDR tcp://0.0.0.0:46657
@@ -11,18 +11,7 @@ RUN mkdir -p $DATA_ROOT && \
 
 RUN apk add --no-cache bash
 
-# TODO: uncomment if we'll use local monitors instead of external ones
-# # Installing eth-net-intelligence-api depencencies and bash
-# RUN apk add --update git bash nodejs nodejs-npm perl
-
-# # Installing eth-net-intelligence client
-# RUN cd /root &&\
-#     git clone https://github.com/cubedro/eth-net-intelligence-api &&\
-#     cd eth-net-intelligence-api &&\
-#     npm install &&\
-#     npm install -g pm2
-
-# Setting GOlang paths
+# Setting Golang paths
 ENV GOPATH /go
 ENV PATH "$PATH:/go/bin"
 # ENV ETHERMINT_VERSION develop
@@ -42,16 +31,13 @@ RUN mkdir -p /go/src/github.com/tendermint/ethermint && \
     rm -rf /go/src/github.com/tendermint/ethermint && \
     apk del go build-base git
 
-# TODO: uncomment if we'll use local monitors instead of external ones
-# # Putting eth-net-intelligence client configuration into container
-# ADD app.json /root/eth-net-intelligence-api/app.json
-
 VOLUME $DATA_ROOT
 
 EXPOSE 46658
 EXPOSE 8545
 EXPOSE 8546
 
-#ENTRYPOINT ["ethermint"]
+# Using entrypoint is never a good idea unless you're using docker image as CLI
+# ENTRYPOINT ["ethermint"]
 
 CMD ethermint --datadir $DATA_ROOT --tendermint_addr $TENDERMINT_ADDR
