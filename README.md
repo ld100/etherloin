@@ -24,3 +24,7 @@ TBD
 - [ ] Add sample contracts subproject with truffle and autodeployment
 - [ ] Add usage docs
 - [ ] Include sample data encoding/decoding solidity contract
+
+## Known issues
+
+- When netstats monitoring enabled, it causes Golang errors on Ethermint nodes. Not critical for the functionality, but litters log output with errors.
