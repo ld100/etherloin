@@ -28,3 +28,4 @@ TBD
 ## Known issues
 
 - When netstats monitoring enabled, it causes Golang errors on Ethermint nodes. Not critical for the functionality, but litters log output with errors.
+- When netstats monitoring enabled, it increases CPU load dramatically (but very little comparing to classic Ethereum mining), which could cause significantly smaller battery time for laptops running Tenderloin.

@@ -86,26 +86,24 @@ services:
     depends_on:
       - ethermaster
 
-  netstats:
-    build: netstats
-    restart: on-failure
-    environment:
-      - WS_SECRET=eth-net-stats-secret
-    # volumes:
-    #   - /etc/localtime:/etc/localtime:ro
-    ports:
-      - "3001:3000"
+  # netstats:
+  #   build: netstats
+  #   restart: on-failure
+  #   environment:
+  #     - WS_SECRET=eth-net-stats-secret
+  #   ports:
+  #     - "3001:3000"
 
-  master_monitor:
-    image: buythewhale/ethstats_monitor
-    volumes:
-      - ${PWD-.}/netstats/master.app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
-    depends_on:
-      - ethermaster
+  # master_monitor:
+  #   image: buythewhale/ethstats_monitor
+  #   volumes:
+  #     - ${PWD-.}/netstats/master.app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
+  #   depends_on:
+  #     - ethermaster
 
-  slave_monitor:
-    image: buythewhale/ethstats_monitor
-    volumes:
-      - ${PWD-.}/netstats/slave.app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
-    depends_on:
-      - ethermaster
+  # slave_monitor:
+  #   image: buythewhale/ethstats_monitor
+  #   volumes:
+  #     - ${PWD-.}/netstats/slave.app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
+  #   depends_on:
+  #     - ethermaster
