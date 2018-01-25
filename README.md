@@ -9,12 +9,12 @@ Etherloin provides private Ethereum (Ethermint) network, that you can use both f
 ## Motivation
 
 Project is inspired by existing smart contract development toolkits, such as [Ganache](http://truffleframework.com/ganache/)/TestRPC, [geth-truffle-docker](https://github.com/gregbkr/geth-truffle-docker) and [instant-dapp-ide](https://github.com/dominicwilliams/instant-dapp-ide).
-All 3 are great starting points for smart contract development, but have significant disadvantages:
+All 3 are great starting points for smart contract development, but have significant drawbacks:
 
-* Ganache uses TestRPC instead of normal Ethereum Virtual Machine, so it can be used for deploying smart contracts, but not other related activities like acreating accounts and redistributing account funds via thos smart contracts. Another drawback is that Ganache is not docker-friendly out of the box, which adds some overhead for docker-based projects.
-* geth-truffle-docker and instant-dapp-ide use full-fledged go-Ethereum (AKA geth) clients and Docker, which make it free from Ganache issues but introduce a new issue: you have to enabled mining in go-ethereum in order to have gas for using smart contracts. Mining takes lot of system resources and makes development process almost impossible on battery-powered laptops.
+* Ganache uses TestRPC instead of normal Ethereum Virtual Machine, so it can be used for deploying smart contracts, but not other related activities like creating accounts and redistributing account funds via those smart contracts. Another drawback is that Ganache is not docker-friendly out of the box, which adds some overhead for docker-based projects.
+* geth-truffle-docker and instant-dapp-ide use full-fledged go-Ethereum (AKA geth) clients and Docker, which make it free from Ganache issues but introduce a new one: you have to enable mining in go-ethereum in order to have gas for using smart contracts. Mining takes lot of system resources and makes development process almost impossible on battery-powered laptops.
 
-Etherlion solves both issues by using Ethermint/Tendermint clients instead of go-ethereum. Ethermint is an Ethereum fork, that uses lightweight Tendermint POS consensus engine, while preserving virtually full backward compatibility with Ethereum.
+Etherloin solves both issues by using Ethermint/Tendermint clients instead of go-ethereum. Ethermint is an Ethereum fork, that uses lightweight Tendermint POS consensus engine, while preserving virtually full backward compatibility with Ethereum.
 
 
 ## Usage
@@ -23,16 +23,16 @@ Etherlion solves both issues by using Ethermint/Tendermint clients instead of go
 
 It is assumed you already have Docker, Docker-compose and familiar with both tools.
 
-### Architecturee
+### Architecture
 
-Etherlion consists of multiple Docker containers interacting with each other:
+Etherloin consists of multiple Docker containers interacting with each other:
 
 - `ethermaster` – main Ethermint node
 - `etherslave` – slave Ethermint node, have the same functionality as the main one
-- `tendermaster` – Tendermint consensus enging seving `ethermaster` node
-- `tenderslave` - Tendermint consensus enging seving `etherslave` node
-- `geth` – Ethereum console connecting to `ethermaster`. Technically implemented as a vanilla go-ethereum client.
-- `ethutils` – vanilla Ethereum client node with additional tools such as bootnode, etc. Used for cases you need to access any of those tools.
+- `tendermaster` – Tendermint consensus engine serving `ethermaster` node
+- `tenderslave` - Tendermint consensus engine serving `etherslave` node
+- `geth` – Ethereum console connected to `ethermaster`. Technically implemented as a vanilla go-ethereum client.
+- `ethutils` – vanilla Ethereum client node with additional tools such as bootnode, evm, abigen, swarm, etc. Used for cases you need to access any of those tools.
 - `contracts_test` – Truffle-based container that does just 1 thing: runs tests on your Solidity smart contracts.
 - `contracts_deploy` – automatically deploys your Truffle-based smart contracts to the private Ethermint network.
 - `contracts_console` – interactive Truffle console working with private Ethermint network.
@@ -50,7 +50,7 @@ It is assumed you'll add own containers or enable/disable some of existing ones 
 
 ### Production usage
 
-Etherloin uses `docker-compose` as on of its main components. However inside it is split into a set of Docker containers, so nothing stops you from using Etherloin-based application in production using docker containers deployment/orchestration tools like Kubernetes, Docker Swarm, etc.
+Etherloin uses `docker-compose` as one of its main components. However inside it is split into a set of Docker containers, so nothing stops you from using Etherloin-based application in production using docker containers deployment/orchestration tools like Kubernetes, Docker Swarm, etc.
 
 ## Directory structure
 
