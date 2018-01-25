@@ -66,6 +66,8 @@ Etherloin uses `docker-compose` as on of its main components. However inside it 
 - [ ] Build Tendermint from source instead of downloading prepackaged version
 - [ ] Include sample data encoding/decoding solidity contract
 - [ ] Add visual block explorer
+- [ ] Implement simple switch between local Ethermint cluster and Ethereum Testnet
+- [ ] Create single python-script as Truffle-wrapper and account unlocker instead of 4 different python/shell scripts
 - [ ] Create a fork of netstats-client that does not break Ethermint
 
 ## Known issues
