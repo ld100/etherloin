@@ -4,7 +4,7 @@ Hassle-free Ethereum smart contracts development kit, that uses full-fledged Eth
 
 The toolset is based on Docker-compose, Truffle framework and Ethermint/Tendermint.
 
-Etherloin provides private Ethereum (Ethermint) network, that you can use both for smart contracts development and any other blockchain-related operations, e.g. create accounts, transfer funds, etc.
+Etherloin provides private Ethereum (Ethermint) network, that you can use both for smart contracts development and any other dapps or blockchain-related operations, e.g. create accounts, transfer funds, etc.
 
 ## Motivation
 
