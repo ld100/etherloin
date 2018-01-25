@@ -29,3 +29,4 @@ TBD
 
 - When netstats monitoring enabled, it causes Golang errors on Ethermint nodes. Not critical for the functionality, but litters log output with errors.
 - When netstats monitoring enabled, it increases CPU load dramatically (but very little comparing to classic Ethereum mining), which could cause significantly smaller battery time for laptops running Tenderloin.
+- Both Tendermint and Ethermint are crashing on Docker for Windows in case their respective data directories are shared with the host OS. Same issue happens with vanilla go-Ethereum since it is not a bug on Ethereum/Ethermint/Tendermint but a bug in Docker for Windows.

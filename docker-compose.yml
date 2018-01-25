@@ -8,7 +8,7 @@ services:
       ETHERMINT_ADDR: "tcp://ethermaster:46658"
       SEEDS: "tenderslave:46656"
     volumes:
-      - ${PWD-.}/data/tendermaster:/tendermint
+      # - ${PWD-.}/data/tendermaster:/tendermint
       - ${PWD-.}/tendermint/start.sh:/tendermint/start.sh:ro
     entrypoint: ""
     command: "/bin/sh /tendermint/start.sh"
@@ -27,7 +27,7 @@ services:
       # See https://github.com/tendermint/tendermint/blob/master/docs/deploy-testnets.rst
       SEEDS: "tendermaster:46656"
     volumes:
-      - ${PWD-.}/data/tenderslave:/tendermint
+      # - ${PWD-.}/data/tenderslave:/tendermint
       - ${PWD-.}/tendermint/start.sh:/tendermint/start.sh:ro
     entrypoint: ""
     command: "/bin/sh /tendermint/start.sh"
@@ -41,7 +41,7 @@ services:
       DATA_ROOT: "/ethermint"
       ALLOW_NETSTATS: 0
     volumes:
-      - ${PWD-.}/data/ethermaster:/ethermint
+      # - ${PWD-.}/data/ethermaster:/ethermint
       - ${PWD-.}/ethermint/start.sh:/ethermint/start.sh:ro
     # Note: The password for the default account is 1234
     entrypoint: ""
@@ -62,7 +62,7 @@ services:
       DATA_ROOT: "/ethermint"
       ALLOW_NETSTATS: 0
     volumes:
-      - ${PWD-.}/data/etherslave:/ethermint
+      # - ${PWD-.}/data/etherslave:/ethermint
       - ${PWD-.}/ethermint/start.sh:/ethermint/start.sh:ro
     entrypoint: ""
     command: "/bin/sh /ethermint/start.sh"
