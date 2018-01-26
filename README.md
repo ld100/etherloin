@@ -59,6 +59,7 @@ Etherloin uses `docker-compose` as one of its main components. However inside it
 * `ethereum` — Dockerfile for building classic Ethereum-go client AKA Geth.
 * `ethermint` — Dockerfile and start scripts for running actual Ethermint cluster.
 * `tendermint` — Dockerfile and start scripts for running Tendermint consensus engine.
+* `explorer` — Dockerfile and configuration files for [Ethereum Block Explorer (ETHExplorer V2)](https://github.com/carsenk/explorer)
 * `netstats` — Server Dockerfile and client configuration for running [ETH Netstats](https://github.com/cubedro/eth-netstats) tool for each node of Ethermint cluster.
 * `setup` — Ethereum genesis file and keystore for Ethermint private cluster, may include other ocnfiguration files.
 
