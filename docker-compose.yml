@@ -39,7 +39,6 @@ services:
     environment:
       TENDERMINT_ADDR: "tcp://tendermaster:46657"
       DATA_ROOT: "/ethermint"
-      ALLOW_NETSTATS: 0
     volumes:
       # - ${PWD-.}/data/ethermaster:/ethermint
       - ${PWD-.}/ethermint/start.sh:/ethermint/start.sh:ro
@@ -60,7 +59,6 @@ services:
     environment:
       TENDERMINT_ADDR: "tcp://tenderslave:46657"
       DATA_ROOT: "/ethermint"
-      ALLOW_NETSTATS: 0
     volumes:
       # - ${PWD-.}/data/etherslave:/ethermint
       - ${PWD-.}/ethermint/start.sh:/ethermint/start.sh:ro

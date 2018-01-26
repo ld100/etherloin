@@ -36,6 +36,7 @@ Etherloin consists of multiple Docker containers interacting with each other:
 - `contracts_test` – Truffle-based container that does just 1 thing: runs tests on your Solidity smart contracts.
 - `contracts_deploy` – automatically deploys your Truffle-based smart contracts to the private Ethermint network.
 - `contracts_console` – interactive Truffle console working with private Ethermint network.
+- `explorer` – [Ethereum Block Explorer (ETHExplorer V2)](https://github.com/carsenk/explorer)
 - `netstats` – [eth-netstats](https://github.com/cubedro/eth-netstats) server. Disabled by default, see "Known issues" section.
 - `master_monitor` – netstats client, monitoring master Ethermint node. Disabled by default, see "Known issues" section.
 - `slave_monitor` – netstats client, monitoring slave Ethermint node. Disabled by default, see "Known issues" section.
@@ -65,7 +66,6 @@ Etherloin uses `docker-compose` as one of its main components. However inside it
 
 - [ ] Build Tendermint from source instead of downloading prepackaged version
 - [ ] Include sample data encoding/decoding solidity contract
-- [ ] Add visual block explorer
 - [ ] Implement simple switch between local Ethermint cluster and Ethereum Testnet
 - [ ] Create single python-script as Truffle-wrapper and account unlocker instead of 4 different python/shell scripts
 - [ ] Create a fork of netstats-client that does not break Ethermint
