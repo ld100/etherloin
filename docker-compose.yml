@@ -113,6 +113,21 @@ services:
     depends_on:
       - ethermaster
 
+  explorer:
+    build: explorer
+    restart: on-failure
+    environment:
+      ETHEREUM_NETWORK: 'development'
+      ETHEREUM_RPC_HOST: "ethermaster"
+      ETHEREUM_RPC_PORT: 8545
+    volumes:
+      - ${PWD-.}/explorer/package.json:/explorer/package.json:ro
+      - ${PWD-.}/explorer/app.js:/explorer/app/app.js:ro
+    ports:
+     - "8000:8000"
+    depends_on:
+     - ethermaster
+
   # netstats:
   #   build: netstats
   #   restart: on-failure
