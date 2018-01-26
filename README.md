@@ -48,6 +48,8 @@ It is assumed you'll add own containers or enable/disable some of existing ones 
 - `docker-compose up --build` to start whole development environment
 - Create smart contracts in _contracts/contracts_ directory and appropriate Truffle migrations in _contracts/migrations_
 - Interact with Ethereum blockchain either programmatically via RPC API or via included geth client: `docker-compose run geth`
+- Go to `http://localhost:8000` to explore local blockchain's blocks
+- If netstats are enabled, you could check it at `http://localhost:3001`
 
 ### Production usage
 
