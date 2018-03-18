@@ -6,9 +6,6 @@ done
 
 echo "Ethereum started, running truffle on network: ${ETHEREUM_NETWORK}"
 
-echo "Installing dependencies..."
-truffle install zeppelin
-
 # Deploy to private network
 echo "Unlocking account for migrations"
 /usr/bin/python3 bin/unlock.py
