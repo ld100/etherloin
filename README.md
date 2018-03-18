@@ -67,6 +67,7 @@ Etherloin uses `docker-compose` as one of its main components. However inside it
 
 ## Roadmap
 
+- [ ] Include tests runner, sample unit tests and Ganache to run tests on
 - [ ] Implement simple switch between local Ethermint cluster and Ethereum Testnet
 - [ ] Create single python-script as Truffle-wrapper and account unlocker instead of 4 different python/shell scripts
 - [ ] Create a fork of netstats-client that does not break Ethermint

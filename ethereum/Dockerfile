@@ -1,7 +1,7 @@
 # Build Geth in a stock Go builder container
 FROM golang:1.9-alpine as builder
 
-ENV GETH_VERSION v1.7.3
+ENV GETH_VERSION v1.8.2
 
 # Install dependencies
 RUN apk update && \
