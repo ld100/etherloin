@@ -1,0 +1,30 @@
+{
+  "name": "etherloin",
+  "version": "1.0.0",
+  "description": "Solidity smart contracts on private Ethereum cluster",
+  "main": "index.js",
+  "repository": "https://github.com/ld100/etherloin",
+  "author": "Alexander Lockshyn",
+  "license": "Apache License 2.0",
+  "private": true,
+  "scripts": {
+    "console": "./node_modules/.bin/truffle develop",
+    "test": "./node_modules/.bin/truffle test"
+  },
+  "dependencies": {
+    "zeppelin-solidity": "^1.7.0"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "ganache-cli": "^6.1.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^2.0.2",
+    "truffle": "^4.0.6"
+  }
+}
