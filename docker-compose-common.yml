@@ -1,7 +1,8 @@
 version: '2.1'
 services:
   tenderapp:
-    build: ./tendermint
+    image: 'ld100/tendermint:alpine'
+    # build: ./tendermint
     environment:
       APP_ENV: "development"
       ETHERMINT_ADDR: "tcp://ethermint:46658"
@@ -9,7 +10,8 @@ services:
     #   - ${PWD-.}/data/tendermint:/tendermint
 
   etherapp:
-    build: ./ethermint
+    image: 'ld100/ethermint:alpine'
+    # build: ./ethermint
     environment:
       APP_ENV: "development"
       TENDERMINT_ADDR: "tcp://tendermint:46657"
@@ -21,7 +23,8 @@ services:
       - ${PWD-.}/setup/keystore:/ethermint/keystore:rw
 
   vanilla_eth:
-    build: ./ethereum
+    image: 'ld100/ethereum:alpine'
+    # build: ./ethereum
     environment:
       APP_ENV: development
       DATA_ROOT: /root/.ethereum
